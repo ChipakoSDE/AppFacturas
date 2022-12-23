@@ -64,12 +64,8 @@ public class Factura {
     public double calcularTotal() {
         double total = 0.0;
         // recorro todos los items para obtener su precio y sumarlo al total
-        for (ItemFactura item : this.items) {
-            // valido que el item no sea null para evitar nullPointerException, solo sumo cuando existe un item
-            if (item == null) {
-                continue;
-            }
-            total += item.calcularImporte();
+        for (int i = 0; i < indiceItems; i++) {
+            total += this.items[i].calcularImporte();
         }
         return total;
     }
@@ -90,11 +86,8 @@ public class Factura {
                 .append("\n")
                 .append("\n#\tNombre\t\t\t$\t\tCant.\tTotal\n");
 
-        for(ItemFactura item: this.items){
-            if(item == null){
-                continue;
-            }
-            sb.append(item)
+        for (int i = 0; i < indiceItems; i++) {
+            sb.append(this.items[i].toString())
                     .append("\n");
         }
         sb.append("\nGran Total: ")
